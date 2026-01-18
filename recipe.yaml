@@ -57,9 +57,9 @@ tasks:
     dest: resources/[standalone]/esx_spawnmanager
 
   # --------------------
-  # server.cfg
+  # server.cfg (FIX)
   # --------------------
-  - action: write_file
+  - action: append_file
     path: server.cfg
     data: |
       sv_hostname "ESX Roleplay"
@@ -68,7 +68,6 @@ tasks:
       set mysql_connection_string "mysql://user:password@localhost/esxrp"
 
       ensure oxmysql
-
       ensure esx_core
       ensure esx_identity
       ensure esx_skin
