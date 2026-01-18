@@ -1,0 +1,56 @@
+$engine: 3
+$onesync: on
+
+name: ESX Roleplay 1.13.4
+description: ESX Legacy Roleplay Server
+author: 0x6x01
+version: 1.0.0
+
+tasks:
+  - action: ensure_dir
+    path: resources/[esx]
+
+  - action: ensure_dir
+    path: resources/[ox]
+
+  - action: ensure_dir
+    path: resources/[standalone]
+
+  - action: download_github
+    src: https://github.com/overextended/oxmysql
+    ref: main
+    dest: resources/[ox]/oxmysql
+
+  - action: download_github
+    src: https://github.com/esx-framework/esx_core
+    ref: 1.13.4
+    dest: resources/[esx]/esx_core
+
+  - action: download_github
+    src: https://github.com/esx-framework/esx_identity
+    ref: 1.13.4
+    dest: resources/[esx]/esx_identity
+
+  - action: download_github
+    src: https://github.com/esx-framework/esx_skin
+    ref: 1.13.4
+    dest: resources/[esx]/esx_skin
+
+  - action: download_github
+    src: https://github.com/esx-framework/esx_spawnmanager
+    ref: 1.13.4
+    dest: resources/[standalone]/esx_spawnmanager
+
+  - action: write_file
+    path: server.cfg
+    content: |
+      sv_hostname "ESX Roleplay"
+      onesync on
+
+      set mysql_connection_string "mysql://user:password@localhost/esxrp"
+
+      ensure oxmysql
+      ensure esx_core
+      ensure esx_identity
+      ensure esx_skin
+      ensure esx_spawnmanager
