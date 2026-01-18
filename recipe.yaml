@@ -43,7 +43,7 @@ tasks:
 
   - action: write_file
     path: server.cfg
-    content: |
+    data: |
       sv_hostname "ESX Roleplay"
       onesync on
 
@@ -54,4 +54,3 @@ tasks:
       ensure esx_identity
       ensure esx_skin
       ensure esx_spawnmanager
-
